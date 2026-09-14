@@ -1,0 +1,38 @@
+import string
+
+lowercase = string.ascii_lowercase
+uppercase = string.ascii_uppercase
+
+pt = input("Enter the text to be encrypted: ")
+key = int(input("Enter the key: "))
+
+# Encrypting the text
+ct = ""
+for char in pt:
+    if char in lowercase:
+        index = lowercase.index(char)
+        new_index = (index + key) % 26
+        ct += lowercase[new_index]
+    elif char in uppercase:
+        index = uppercase.index(char)
+        new_index = (index + key) % 26
+        ct += uppercase[new_index]
+    else:
+        ct += char
+print("Encrypted text:", ct)
+
+# Decrypting the text
+decrypted_pt = ""
+for char in ct:
+    if char in lowercase:
+        index = lowercase.index(char)
+        new_index = (index - key) % 26
+        decrypted_pt += lowercase[new_index]
+    elif char in uppercase:
+        index = uppercase.index(char)
+        new_index = (index - key) % 26
+        decrypted_pt += uppercase[new_index]
+    else:
+        decrypted_pt += char
+        
+print("Decrypted text:", decrypted_pt)
